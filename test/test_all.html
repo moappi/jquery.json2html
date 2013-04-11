@@ -248,3 +248,47 @@
 		});
 	});
 </script>
+
+
+<!------------------------------------ HTML Attribute Tests -------------------------------------->
+<h2>6. HTML attribute Test</h2>
+<div class='indent'>
+	<div id='attrTest'>
+		<h3>HTML attributes <span class='status'></span></h3> 
+		<ul></ul>
+	</div>
+
+	<button id='runAttrTest' class='run'>Run Test</button>
+</div>
+
+<script>
+	var movies = [
+		{ Name: "The Red Violin", ReleaseYear: "1998" },
+		{ Name: "The blueViolin", ReleaseYear: "1998" },
+		{ Name: "The yellow Violin", ReleaseYear: "1998" },
+		{ Name: "The purple Violin", ReleaseYear: "1998" },
+		{ Name: "The orange Violin", ReleaseYear: "1998" }
+	];
+
+	var transform = 
+			{tag:'li',class:'liststyle','data-idx':42,children:[
+				{tag:'b',html:'${Name}'},
+				{tag:'span',class:'spanstyle',html:'${ReleaseYear}'}
+			]};
+	$(document).ready(function(){
+
+		$('#runAttrTest').click(function() {
+
+			status( false, $('#attrTest .status'));
+
+			$('#attrTest ul').html('');
+			$('#attrTest ul').json2html(movies, transform);
+
+			//Validate the test
+			status( $('#attrTest ul li:first').attr('class') === 'liststyle' &&
+				$('#attrTest ul li:first').attr('data-idx') === '42' &&
+				$('#attrTest ul li span:first').attr('class') === 'spanstyle', 
+				$('#attrTest .status'));
+		});
+	});
+</script>
