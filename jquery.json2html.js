@@ -53,7 +53,7 @@
 				if(obj.length === 0) throw 'jquery.json2html was unable to attach event ' + event.id + ' to DOM';
 				
 				//remove the attribute
-				$(obj).removeAttr('json2html-event-id');
+				$(obj).removeAttr('json2html-event-id-'+event.type);
 
 				//attach the event
 				$(obj).on(event.type,event.data,function(e){
