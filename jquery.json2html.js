@@ -27,7 +27,7 @@
 		};
 
 		//Extend the options (with defaults)
-		if( options !== undefined ) $.extend(options, _options);
+		if( _options !== undefined ) $.extend(options, _options);
 
 		//Insure that we have the events turned (Required)
 		options.events = true;
