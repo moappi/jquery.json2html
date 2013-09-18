@@ -230,10 +230,9 @@
 			{tag:'ul',children:function(obj){return(json2html.transform(obj.Children, transform_child));}}
 		];
 
-	var transform_child = 
-			{tag:'li',children:[
-				{tag:'b',html:'${Name}'}
-			]};
+	var transform_child = {tag:'li',children:[
+			{tag:'b',html:'${Name}'}
+		]};
 
 	$(document).ready(function(){
 		
@@ -270,11 +269,11 @@
 		{ Name: "The orange Violin", ReleaseYear: "1998" }
 	];
 
-	var transform = 
-			{tag:'li',class:'liststyle','data-idx':42,children:[
-				{tag:'b',html:'${Name}'},
-				{tag:'span',class:'spanstyle',html:'${ReleaseYear}'}
-			]};
+	var transform = {tag:'li','class':'liststyle','data-idx':42,children:[
+			{tag:'b',html:'${Name}'},
+			{tag:'span','class':'spanstyle',html:'${ReleaseYear}'}
+		]};
+
 	$(document).ready(function(){
 
 		$('#runAttrTest').click(function() {

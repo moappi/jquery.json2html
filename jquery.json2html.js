@@ -66,9 +66,9 @@
 			}
 
 			//Append it to the appropriate element
-			if (options.replace) $.fn.replaceWith.apply($(this),$(dom).children());
-			else if (options.prepend) $.fn.prepend.apply($(this),$(dom).children());
-			else $.fn.append.apply($(this),$(dom).children());
+			if (options.replace) $.fn.replaceWith.call($(this),$(dom).children());
+			else if (options.prepend) $.fn.prepend.call($(this),$(dom).children());
+			else $.fn.append.call($(this),$(dom).children());
 		});
 	};
 })(jQuery);
