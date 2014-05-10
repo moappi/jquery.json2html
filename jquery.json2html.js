@@ -13,7 +13,7 @@
 (function($){	
 
 	//Main method
-	$.fn.json2html = function(json, transform, _options){	
+	$.fn.json2html = function(json, transform, max, _options){	
 		
 		//Make sure we have the json2html base loaded
 		if(typeof json2html === 'undefined') return(undefined);
@@ -36,7 +36,7 @@
 		return this.each(function(){ 
 			
 			//let json2html core do it's magic
-			var result = json2html.transform(json, transform, options);
+			var result = json2html.transform(json, transform, max, options);
 			
 			//Attach the html(string) result to the DOM
 			var dom = $(document.createElement('i')).html(result.html);
