@@ -13,7 +13,7 @@
 var json2html = {
 	
 	/* ---------------------------------------- Public Methods ------------------------------------------------ */
-	'transform': function(json,transform,_options) {
+	'transform': function(json,transform,max,_options) {
 		
 		//create the default output
 		var out = {'events':[],'html':''};
@@ -33,7 +33,7 @@ var json2html = {
 			var obj = typeof json === 'string' ? JSON.parse(json) : json;
 			
 			//Transform the object (using the options)
-			out = json2html._transform(obj, transform, options);
+			out = json2html._transform(obj, transform,max, options);
 		}
 		
 		//determine if we need the events
@@ -70,7 +70,7 @@ var json2html = {
 	},
 	
 	//Transform object
-	'_transform':function(json, transform, options) {
+	'_transform':function(json, transform,max, options) {
 		
 		var elements = {'events':[],'html':''};
 		
@@ -79,6 +79,9 @@ var json2html = {
 			
 			//Itterrate through the array and add it to the elements array
 			var len=json.length;
+			if (max < len) {
+				len = max;
+			}
 			for(var j=0;j<len;++j) {	
 				//Apply the transform to this object and append it to the results
 				elements = json2html._append(elements,json2html._apply(json[j], transform, j, options));
