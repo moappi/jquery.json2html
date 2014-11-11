@@ -33,7 +33,8 @@
 		options.events = true;
 		
 		//Make sure to take care of any chaining
-		return this.each(function(){ 
+		var thisLength = this.length
+		for( var i=0; i<thisLength; i++ ){
 			
 			//let json2html core do it's magic
 			var result = json2html.transform(json, transform, options);
@@ -42,9 +43,9 @@
 			var dom = $(document.createElement('i')).html(result.html);
 
 			//Determine if we have events
-			for(var i = 0; i < result.events.length; i++) {
+			for(var j = 0; j < result.events.length; j++) {
 				
-				var event = result.events[i];
+				var event = result.events[j];
 
 				//find the associated DOM object with this event
 				var obj = $(dom).find("[json2html-event-id-"+event.type+"='" + event.id + "']");
@@ -66,9 +67,11 @@
 			}
 
 			//Append it to the appropriate element
-			if (options.replace) $.fn.replaceWith.call($(this),$(dom).children());
-			else if (options.prepend) $.fn.prepend.call($(this),$(dom).children());
-			else $.fn.append.call($(this),$(dom).children());
-		});
+			if (options.replace) $.fn.replaceWith.call($(this[i]),$(dom).children());
+			else if (options.prepend) $.fn.prepend.call($(this[i]),$(dom).children());
+			else $.fn.append.call($(this[i]),$(dom).children());
+		}
+		
+		return false
 	};
 })(jQuery);
