@@ -41,7 +41,7 @@ Will render into the following html
 
 Where is the project now?
 --------------
-Currently json2html (and jquery.json2html) are in beta release.  Performance wise json2html is comparable to other client side templating engines like jsRender.
+json2html (and jquery.json2html) have been battle hardened and used in thousands of projects since it's original release in 2012.
 
 
 How do I start?
