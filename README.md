@@ -27,8 +27,8 @@ Example of a Transform?
 --------------
 ```javascript
 var transform = 
- {tag:'li',id:'${id}',children:[
-	{tag:'span',html:'${name} ${year}'}
+ {"<>":"li","id":"${id}","html":[
+	{"<>":"span","html":"${name} ${year}"}
   ]};		
 ```
 Will render into the following html

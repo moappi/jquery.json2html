@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>JSON2HTML Tests</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes"> 
+    
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+
+	<!-- Bootstrap & Font Awesome  -->
+    <link href="https://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.css" rel="stylesheet">
+    
+    <!-- Json2html -->
+    <script src="../json2html.js"></script>
+    <script src="../jquery.json2html.js"></script>
+    
+    <style>
+        body { padding:20px; }
+    </style>
+</head>
+
+<body>
+</body>
+
+<script>
+
+    //Specs on what tests to run and how to display the results
+    var run = {
+        //How to display and run the tests
+        "display":[
+            {"<>":"h3","html":"${title}"},
+            {"<>":"div","html":function(){
+                //Process each test (with jquery plugin)
+                return($.json2html(data[this.data],transforms[this.transform]));  
+            }},
+            {"<>":"hr"}
+        ],
+         
+        //Tests that we should run 
+        "tests":[
+            
+            //Shorthand Single object transform 
+            {"title":"Shorthand Obj Transform - Obj Data","data":"single","transform":"single"},
+            {"title":"Shorthand Obj Transform - Array Data","data":"array","transform":"single"},
+            
+            //Shorthand Array transform 
+            {"title":"Shorthand Array Transform - Obj Data","data":"single","transform":"multi"},
+            {"title":"Shorthand Array Transform - Array Data","data":"array","transform":"multi"},
+            
+            //Shorthand Children transform
+            {"title":"Shorthand Children Transform - Obj Data","data":"single","transform":"children"},
+            {"title":"Shorthand Children Transform - Array Data","data":"array","transform":"children"},
+            
+            //Function Children transform
+            {"title":"Function Children Transform - Obj Data","data":"single","transform":"func"},
+            {"title":"Function Children Transform - Array Data","data":"array","transform":"func"},
+            
+            //Event transform
+            {"title":"jQuery Event Transform","data":"single","transform":"event"}
+        ]
+    };
+
+    //Transforms to test
+    var transforms = {
+    
+        "single":{"<>":"div","html":"${html}"},
+        
+        "multi":[
+            {"<>":"span","html":"${html}"},
+            {"<>":"span","html":" ${attr}"}
+        ],
+    
+        "children":{"<>":"div","test":"${attr}","html":[
+            {"<>":"span","html":"${html}"}
+        ]},
+        
+        "func":{"<>":"div","test":function(){return(this.attr)},"html":[
+            {"<>":"span","html":function(){return(this.html)}}
+        ]},
+        
+        "event":{"<>":"button","class":"btn btn-primary","html":"Click","onclick":function(e){
+            console.log('Button Clicked',e);
+			$(this).attr("disabled","true").html("Done");
+        }}
+    };
+    
+    //Datasets for tests
+    var data = {
+        "single":{"attr":"attr-1","html":"html-1"},
+        
+        "array":[
+            {"attr":"attr-1","html":"html-1"},
+            {"attr":"attr-2","html":"html-2"}
+        ]
+    };
+
+    //Ok run the tests!
+    $('body').json2html(run.tests,run.display);
+
+</script>
+
+</html>
