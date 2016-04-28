@@ -59,7 +59,10 @@
             {"title":"Function Children Transform - Array Data","data":"array","transform":"func"},
             
             //Event transform
-            {"title":"jQuery Event Transform","data":"single","transform":"event"}
+            {"title":"jQuery Event Transform","data":"single","transform":"event"},
+
+			//$.json2html output - HTML
+            {"title":"$.json2html - Output HTML","data":"single","transform":"json2html.html"}
         ]
     };
 
@@ -84,7 +87,11 @@
         "event":{"<>":"button","class":"btn btn-primary","html":"Click","onclick":function(e){
             console.log('Button Clicked',e);
 			$(this).attr("disabled","true").html("Done");
-        }}
+        }},
+
+		"json2html.html":{"<>":"div","html":function(){
+			return($.json2html(data.single,transforms.single,{'output':'html'}));
+		}}
     };
     
     //Datasets for tests
@@ -99,6 +106,10 @@
 
     //Ok run the tests!
     $('body').json2html(run.tests,run.display);
+
+	//Run last test
+	// insure that jquery object has registered events correctly
+	$('body').append( $.json2html({"title":"$.json2html - Output jQuery","data":"single","transform":"event"},run.display,{'output':'jquery'}));
 
 </script>
 
