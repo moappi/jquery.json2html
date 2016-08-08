@@ -187,9 +187,12 @@ IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY O
                 if (match[2]) {
                     arg_names |= 1
                     var field_list = [], replacement_field = match[2], field_match = []
+                    
                     if ((field_match = re.key.exec(replacement_field)) !== null) {
                         field_list[field_list.length] = field_match[1]
+                        
                         while ((replacement_field = replacement_field.substring(field_match[0].length)) !== '') {
+                        
                             if ((field_match = re.key_access.exec(replacement_field)) !== null) {
                                 field_list[field_list.length] = field_match[1]
                             }
@@ -202,6 +205,7 @@ IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY O
                         }
                     }
                     else {
+                         
                     	 throw new SyntaxError("[sprintf] failed to parse named argument key")
                     }
                     match[2] = field_list
