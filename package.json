@@ -1,0 +1,27 @@
+{
+  "author": {
+    "name": "Chad Brown",
+    "email": "info@json2html.com",
+    "url": "http://json2html.com"
+  },
+  "name": "jquery.json2html",
+  "description": "jquery.json2html - HTML Templating",
+  "version": "1.0.1",
+  "homepage": "http://json2html.com",
+  "repository": {
+    "url": "git://github.com/moappi/jquery.json2html.git"
+  },
+  "keywords": [
+    "json2html",
+    "templating",
+    "html",
+    "web",
+    "templates",
+    "transforms",
+    "json"
+  ],
+  "main": "jquery.json2html.js",
+  "dependencies": {},
+  "devDependencies": {},
+  "optionalDependencies": {}
+}
