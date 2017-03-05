@@ -1,15 +1,17 @@
-jquery.json2html
+jquery.json2html + sprintf
 =========
 
-What is jquery.json2html?
+What is jquery.json2html + sprintf?
 ------------------
 jquery.json2html is a jquery plug-in that implements the HTML templating engine <a href='https://github.com/moappi/json2html'>json2html</a> for client side browers
+while using sprintf like-syntax to format the data output. 
 
 Ok so what is json2html?
 ------------------
 json2html is a javascript HTML templating engine which converts json object to html using json transforms.  Note that this jquery.json2html package includes the latest version of json2html.
 
-For more information check out the <a href='https://github.com/moappi/json2html'>json2html</a> core library
+For more information check out the <a href='https://github.com/moappi/json2html'>json2html</a> core library.
+For more information about the <a href="https://github.com/alexei/sprintf.js">sprintf</a> function
 
 Also implemented in node.js <a href='https://github.com/moappi/node-json2html'>node-json2html</a>
 
@@ -22,20 +24,21 @@ Instead of writing HTML templates json2html relies on JSON transforms to convert
 +	Event binding to DOM objects (exclusively with jquery.json2html) 
 +	Use of inline functions to allow for complex logic during transformation 
 +	Dynamic building of transform objects
++   Use sprintf like-syntax to format your data 
 
 Example of a Transform?
 --------------
 ```javascript
 var transform = 
  {"<>":"li","id":"${id}","html":[
-	{"<>":"span","html":"${name} ${year}"}
+	{"<>":"span","html":"${name} ${year} ${salary}.2f"}
   ]};		
 ```
 Will render into the following html
 
 ```html
 <li id=1123>
-	<span>Jack and Jill (2001)</span>
+	<span>Jack and Jill (2001) 50000.00</span>
 </li>	
 ```
 
