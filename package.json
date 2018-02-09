@@ -6,7 +6,7 @@
   },
   "name": "jquery.json2html",
   "description": "jquery.json2html - HTML Templating",
-  "version": "1.0.1",
+  "version": "1.2.0",
   "homepage": "http://json2html.com",
   "repository": {
     "url": "https://github.com/moappi/jquery.json2html.git"
